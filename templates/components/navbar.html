@@ -1,0 +1,183 @@
+{% load static %}
+
+<nav
+    x-data="{ mobileMenuOpen: false, scrolled: false }"
+    x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 20 })"
+    :class="scrolled ? 'navbar-blur shadow-lg' : 'bg-white/80 backdrop-blur-sm'"
+    class="fixed w-full z-50 transition-all duration-500 border-b"
+    :style="scrolled ? 'border-color: rgba(0, 0, 0, 0.08)' : 'border-color: rgba(0, 0, 0, 0.04)'"
+>
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex justify-between items-center h-20">
+
+            <!-- Logo -->
+            <a href="{% url 'landing:index' %}" class="flex items-center gap-3 group relative z-50">
+                <!-- Logo SVG con Animación -->
+                <div class="relative w-11 h-11">
+                    <div class="absolute inset-0 bg-gradient-to-br from-brand-blue-500 to-brand-green-500 rounded-xl opacity-0 group-hover:opacity-10 transition-opacity duration-300 blur"></div>
+                    <svg viewBox="0 0 100 100" class="relative w-full h-full transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                        <defs>
+                            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#0066FF;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#10B981;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#0066FF;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Hexágono Isométrico -->
+                        <path d="M50 15L85 35V65L50 85L15 65V35L50 15Z"
+                              stroke="url(#logoGrad)"
+                              stroke-width="5"
+                              stroke-linejoin="round"
+                              fill="none"
+                              class="transition-all duration-300"/>
+                        <!-- Líneas internas -->
+                        <path d="M50 15V50L85 35M50 50L15 35M50 50V85"
+                              stroke="#0F172A"
+                              stroke-width="3"
+                              fill="none"
+                              opacity="0.6"/>
+                        <!-- Centro brillante -->
+                        <circle cx="50" cy="50" r="5" fill="url(#logoGrad)"/>
+                    </svg>
+                </div>
+
+                <!-- Texto del Logo -->
+                <div class="flex flex-col leading-none">
+                    <span class="text-xl font-black text-brand-navy-900 tracking-tight font-display">
+                        SMART<span class="font-light">Solutions</span>
+                    </span>
+                    <span class="text-[9px] font-bold text-brand-blue-600 tracking-[0.35em] uppercase">
+                        VE
+                    </span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex items-center gap-1">
+                <!-- Nav Links -->
+                <a href="#desafio"
+                   class="group relative px-4 py-2 text-sm font-semibold text-neutral-700 hover:text-brand-blue-600 transition-colors duration-300 font-display">
+                    <span class="relative z-10">El Desafío</span>
+                    <div class="absolute inset-x-2 bottom-1 h-0.5 bg-gradient-to-r from-brand-blue-600 to-brand-green-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                </a>
+
+                <a href="#metodologia"
+                   class="group relative px-4 py-2 text-sm font-semibold text-neutral-700 hover:text-brand-blue-600 transition-colors duration-300 font-display">
+                    <span class="relative z-10">Metodología</span>
+                    <div class="absolute inset-x-2 bottom-1 h-0.5 bg-gradient-to-r from-brand-blue-600 to-brand-green-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                </a>
+
+                <a href="#servicios"
+                   class="group relative px-4 py-2 text-sm font-semibold text-neutral-700 hover:text-brand-blue-600 transition-colors duration-300 font-display">
+                    <span class="relative z-10">Servicios</span>
+                    <div class="absolute inset-x-2 bottom-1 h-0.5 bg-gradient-to-r from-brand-blue-600 to-brand-green-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                </a>
+
+                <a href="#testimonios"
+                   class="group relative px-4 py-2 text-sm font-semibold text-neutral-700 hover:text-brand-blue-600 transition-colors duration-300 font-display">
+                    <span class="relative z-10">Casos</span>
+                    <div class="absolute inset-x-2 bottom-1 h-0.5 bg-gradient-to-r from-brand-blue-600 to-brand-green-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                </a>
+
+                <!-- CTA Button -->
+                <a href="#contacto"
+                   class="ml-4 group relative inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-brand-blue-600 to-brand-blue-700 rounded-xl font-bold text-white text-sm shadow-primary hover:shadow-primary-lg transition-all duration-300 hover:-translate-y-0.5 overflow-hidden font-display">
+                    <span class="relative z-10">Contáctanos</span>
+                    <svg class="relative z-10 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                    </svg>
+                    <div class="absolute inset-0 bg-gradient-to-r from-brand-blue-500 to-brand-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button
+                @click="mobileMenuOpen = !mobileMenuOpen"
+                class="lg:hidden relative z-50 p-2 text-neutral-700 hover:text-brand-blue-600 transition-colors duration-300"
+                aria-label="Toggle menu"
+            >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                    <path x-show="mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div
+        x-show="mobileMenuOpen"
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        @click="mobileMenuOpen = false"
+        class="lg:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+        style="margin-top: 80px;"
+    ></div>
+
+    <div
+        x-show="mobileMenuOpen"
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0 transform translate-y-4"
+        x-transition:enter-end="opacity-100 transform translate-y-0"
+        x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100 transform translate-y-0"
+        x-transition:leave-end="opacity-0 transform translate-y-4"
+        class="lg:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-xl border-t border-neutral-200 shadow-2xl z-40"
+        @click.away="mobileMenuOpen = false"
+    >
+        <div class="max-w-7xl mx-auto px-6 py-6 space-y-2">
+            <!-- Mobile Nav Links -->
+            <a href="#desafio"
+               @click="mobileMenuOpen = false"
+               class="flex items-center justify-between px-4 py-3 text-base font-semibold text-neutral-700 hover:text-brand-blue-600 hover:bg-brand-blue-50 rounded-xl transition-all duration-200 font-display group">
+                <span>El Desafío</span>
+                <svg class="w-5 h-5 text-neutral-400 group-hover:text-brand-blue-600 group-hover:translate-x-1 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+
+            <a href="#metodologia"
+               @click="mobileMenuOpen = false"
+               class="flex items-center justify-between px-4 py-3 text-base font-semibold text-neutral-700 hover:text-brand-blue-600 hover:bg-brand-blue-50 rounded-xl transition-all duration-200 font-display group">
+                <span>Metodología</span>
+                <svg class="w-5 h-5 text-neutral-400 group-hover:text-brand-blue-600 group-hover:translate-x-1 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+
+            <a href="#servicios"
+               @click="mobileMenuOpen = false"
+               class="flex items-center justify-between px-4 py-3 text-base font-semibold text-neutral-700 hover:text-brand-blue-600 hover:bg-brand-blue-50 rounded-xl transition-all duration-200 font-display group">
+                <span>Servicios</span>
+                <svg class="w-5 h-5 text-neutral-400 group-hover:text-brand-blue-600 group-hover:translate-x-1 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+
+            <a href="#testimonios"
+               @click="mobileMenuOpen = false"
+               class="flex items-center justify-between px-4 py-3 text-base font-semibold text-neutral-700 hover:text-brand-blue-600 hover:bg-brand-blue-50 rounded-xl transition-all duration-200 font-display group">
+                <span>Casos de Éxito</span>
+                <svg class="w-5 h-5 text-neutral-400 group-hover:text-brand-blue-600 group-hover:translate-x-1 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+
+            <!-- Mobile CTA -->
+            <div class="pt-4 mt-4 border-t border-neutral-200">
+                <a href="#contacto"
+                   @click="mobileMenuOpen = false"
+                   class="flex items-center justify-center gap-2 w-full px-6 py-4 bg-gradient-to-r from-brand-blue-600 to-brand-blue-700 rounded-xl font-bold text-white text-base shadow-primary hover:shadow-primary-lg transition-all duration-300 font-display">
+                    <span>Contáctanos</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

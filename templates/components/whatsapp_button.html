@@ -1,0 +1,63 @@
+{% load static %}
+
+<!-- Botón Flotante de WhatsApp -->
+<div
+    x-data="{ show: false }"
+    x-init="setTimeout(() => { show = true }, 2000)"
+    x-show="show"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0 transform scale-0"
+    x-transition:enter-end="opacity-100 transform scale-100"
+    class="fixed bottom-6 right-6 z-40 no-print"
+>
+    <a
+        href="https://wa.me/{{ config.whatsapp_numero|cut:' '|cut:'+' }}?text={{ config.whatsapp_mensaje|urlencode }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group flex items-center gap-3 bg-smart-green hover:bg-green-600 text-white px-6 py-4 rounded-full shadow-2xl hover:shadow-green transition-all duration-300 hover:scale-110"
+        aria-label="Contactar por WhatsApp"
+    >
+        <!-- Icono de WhatsApp -->
+        <div class="relative">
+            <i class="fa-brands fa-whatsapp text-3xl"></i>
+            <!-- Ping Animation -->
+            <span class="absolute top-0 right-0 flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+            </span>
+        </div>
+
+        <!-- Texto (visible solo en desktop) -->
+        <span class="hidden lg:block font-bold text-sm whitespace-nowrap">
+            ¿Necesitas ayuda?
+        </span>
+    </a>
+
+    <!-- Tooltip para mobile -->
+    <div class="lg:hidden absolute bottom-full right-0 mb-2 bg-smart-navy text-white px-4 py-2 rounded-lg text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+        Contáctanos por WhatsApp
+        <div class="absolute top-full right-6 -mt-1">
+            <div class="border-8 border-transparent border-t-smart-navy"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Estilos adicionales para el botón -->
+<style>
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    .fixed.bottom-6 a {
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .fixed.bottom-6 a:hover {
+        animation: none;
+    }
+</style>

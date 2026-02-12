@@ -14,29 +14,29 @@ class ContactoForm(forms.ModelForm):
         widgets = {
             'nombre': forms.TextInput(attrs={
                 'placeholder': 'Tu nombre completo',
-                'class': 'form-input',
+                'class': 'w-full px-6 py-4 bg-white border border-slate-200 rounded-2xl focus:outline-none focus:border-smart-blue transition-colors text-slate-900',
                 'autocomplete': 'name',
             }),
             'email': forms.EmailInput(attrs={
                 'placeholder': 'tu@empresa.com',
-                'class': 'form-input',
+                'class': 'w-full px-6 py-4 bg-white border border-slate-200 rounded-2xl focus:outline-none focus:border-smart-blue transition-colors text-slate-900',
                 'autocomplete': 'email',
             }),
             'telefono': forms.TextInput(attrs={
                 'placeholder': '+58 412 0000000',
-                'class': 'form-input',
+                'class': 'w-full px-6 py-4 bg-white border border-slate-200 rounded-2xl focus:outline-none focus:border-smart-blue transition-colors text-slate-900',
                 'autocomplete': 'tel',
             }),
             'empresa': forms.TextInput(attrs={
                 'placeholder': 'Nombre de tu empresa',
-                'class': 'form-input',
+                'class': 'w-full px-6 py-4 bg-white border border-slate-200 rounded-2xl focus:outline-none focus:border-smart-blue transition-colors text-slate-900',
             }),
             'servicio_interes': forms.Select(attrs={
-                'class': 'form-select',
+                'class': 'w-full px-6 py-4 bg-white border border-slate-200 rounded-2xl focus:outline-none focus:border-smart-blue transition-colors text-slate-900',
             }),
             'mensaje': forms.Textarea(attrs={
                 'placeholder': 'Cuéntanos sobre tu negocio y qué problema quieres resolver...',
-                'class': 'form-textarea',
+                'class': 'w-full px-6 py-4 bg-white border border-slate-200 rounded-2xl focus:outline-none focus:border-smart-blue transition-colors text-slate-900',
                 'rows': 4,
             }),
         }

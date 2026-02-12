@@ -1,0 +1,187 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- SEO Meta Tags -->
+    <title>{% block title %}{{ config.meta_titulo }}{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}{{ config.meta_descripcion }}{% endblock %}">
+    <meta name="keywords" content="consultoría tecnológica, automatización, business intelligence, PYMEs Venezuela, transformación digital">
+    <meta name="author" content="{{ config.nombre_empresa }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:title" content="{% block og_title %}{{ config.meta_titulo }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ config.meta_descripcion }}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{% static 'img/og-image.jpg' %}{% endblock %}">
+    <meta property="og:locale" content="es_VE">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ request.build_absolute_uri }}">
+    <meta name="twitter:title" content="{% block twitter_title %}{{ config.meta_titulo }}{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{{ config.meta_descripcion }}{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{% static 'img/og-image.jpg' %}{% endblock %}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+    <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Azul Primary
+                        'brand-blue': {
+                            50: '#F0F7FF',
+                            100: '#E6F0FF',
+                            200: '#CCE0FF',
+                            300: '#99C2FF',
+                            400: '#66A3FF',
+                            500: '#3385FF',
+                            600: '#0066FF',
+                            700: '#0052CC',
+                            800: '#003380',
+                            900: '#001A4D',
+                        },
+                        // Verde Acento
+                        'brand-green': {
+                            100: '#ECFDF5',
+                            200: '#D1FAE5',
+                            300: '#A7F3D0',
+                            400: '#6EE7B7',
+                            500: '#34D399',
+                            600: '#10B981',
+                            700: '#059669',
+                            800: '#047857',
+                            900: '#065F46',
+                        },
+                        // Oro/Amber
+                        'brand-amber': {
+                            100: '#FEF3C7',
+                            200: '#FDE68A',
+                            300: '#FCD34D',
+                            400: '#FBBF24',
+                            500: '#F59E0B',
+                            600: '#D97706',
+                            700: '#B45309',
+                            800: '#92400E',
+                            900: '#78350F',
+                        },
+                        // Navy
+                        'brand-navy': {
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1E293B',
+                            900: '#0F172A',
+                            950: '#020617',
+                        },
+                        // Aliases
+                        'smart-blue': '#0066FF',
+                        'smart-green': '#10B981',
+                        'smart-navy': '#0F172A',
+                        'smart-amber': '#F59E0B',
+                    },
+                    fontFamily: {
+                        'display': ['Outfit', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace'],
+                        'outfit': ['Outfit', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'primary': '0 10px 40px -10px rgba(0, 102, 255, 0.25)',
+                        'primary-lg': '0 20px 60px -15px rgba(0, 102, 255, 0.35)',
+                        'accent': '0 10px 40px -10px rgba(16, 185, 129, 0.25)',
+                        'accent-lg': '0 20px 60px -15px rgba(16, 185, 129, 0.35)',
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Design System CSS -->
+    <link rel="stylesheet" href="{% static 'css/design-system.css' %}">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+
+    <!-- Font Awesome (para iconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body class="font-inter bg-white text-slate-900">
+
+    <!-- Navbar -->
+    {% include 'components/navbar.html' %}
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    {% include 'components/footer.html' %}
+
+    <!-- WhatsApp Floating Button -->
+    {% include 'components/whatsapp_button.html' %}
+
+    <!-- Scroll Reveal Script -->
+    <script>
+        // Intersection Observer para animaciones de scroll
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

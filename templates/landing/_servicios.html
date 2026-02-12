@@ -1,0 +1,80 @@
+{% load static custom_filters %}
+
+<section id="servicios" class="py-24 bg-smart-navy text-white px-6">
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 reveal">
+            <div>
+                <h3 class="text-smart-blue font-black uppercase tracking-[0.3em] text-xs mb-4">
+                    Portafolio
+                </h3>
+                <h2 class="text-4xl md:text-5xl font-black italic font-montserrat">
+                    Soluciones Especializadas
+                </h2>
+            </div>
+            <p class="text-slate-400 max-w-sm text-sm">
+                Productos diseñados para cada etapa de la madurez organizacional.
+            </p>
+        </div>
+
+        <!-- Grid de Servicios -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            {% for servicio in servicios %}
+            <div class="glass-card p-10 rounded-[40px] hover:border-smart-blue transition-all card-hover reveal" style="animation-delay: {{ forloop.counter0|mul:0.1 }}s;">
+                <!-- Icono -->
+                <div class="w-14 h-14 bg-smart-blue/20 rounded-2xl flex items-center justify-center mb-6 text-smart-blue text-2xl">
+                    {% if servicio.icono == 'chart-bar' %}
+                        <i class="fa-solid fa-chart-bar"></i>
+                    {% elif servicio.icono == 'cog' %}
+                        <i class="fa-solid fa-cog"></i>
+                    {% elif servicio.icono == 'device-mobile' %}
+                        <i class="fa-solid fa-mobile-screen"></i>
+                    {% elif servicio.icono == 'database' %}
+                        <i class="fa-solid fa-database"></i>
+                    {% elif servicio.icono == 'lightning-bolt' %}
+                        <i class="fa-solid fa-bolt"></i>
+                    {% elif servicio.icono == 'presentation-chart-line' %}
+                        <i class="fa-solid fa-chart-line"></i>
+                    {% elif servicio.icono == 'cube' %}
+                        <i class="fa-solid fa-cube"></i>
+                    {% elif servicio.icono == 'shield-check' %}
+                        <i class="fa-solid fa-shield-halved"></i>
+                    {% else %}
+                        <i class="fa-solid fa-star"></i>
+                    {% endif %}
+                </div>
+
+                <!-- Título -->
+                <h4 class="text-xl font-black mb-1">{{ servicio.titulo }}</h4>
+
+                <!-- Categoría (opcional) -->
+                <p class="text-smart-blue text-[10px] font-bold uppercase mb-6 tracking-widest">
+                    Servicio Especializado
+                </p>
+
+                <!-- Descripción -->
+                <p class="text-slate-400 text-xs leading-relaxed mb-8">
+                    {{ servicio.descripcion_corta }}
+                </p>
+
+                {% if servicio.beneficio_clave %}
+                <!-- Beneficio Clave -->
+                <div class="text-[10px] font-black uppercase text-smart-green border-t border-white/10 pt-4">
+                    ✓ {{ servicio.beneficio_clave }}
+                </div>
+                {% endif %}
+            </div>
+            {% empty %}
+            <!-- Fallback si no hay servicios -->
+            <div class="col-span-full text-center py-12">
+                <p class="text-slate-400">
+                    Los servicios se configuran desde el panel de administración.
+                </p>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>

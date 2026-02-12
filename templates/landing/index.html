@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ config.meta_titulo }}{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+{% include 'landing/_hero.html' %}
+
+<!-- EL DESAFÍO -->
+{% include 'landing/_desafio.html' %}
+
+<!-- METODOLOGÍA -->
+{% include 'landing/_metodologia.html' %}
+
+<!-- SERVICIOS -->
+{% include 'landing/_servicios.html' %}
+
+<!-- TESTIMONIOS / CASOS DE ÉXITO -->
+{% include 'landing/_testimonios.html' %}
+
+<!-- CITA INSPIRACIONAL -->
+{% include 'landing/_cita.html' %}
+
+<!-- FORMULARIO DE CONTACTO -->
+{% include 'landing/_contacto.html' %}
+
+{% endblock %}

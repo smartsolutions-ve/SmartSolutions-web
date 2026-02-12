@@ -1,0 +1,163 @@
+{% load static %}
+
+<footer class="bg-black text-white">
+    <div class="max-w-7xl mx-auto px-6 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+
+            <!-- Columna 1: Logo y Descripción -->
+            <div class="md:col-span-2 space-y-6">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12">
+                        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="footerLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#0066FF;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#22C55E;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M50 15L85 35V65L50 85L15 65V35L50 15Z"
+                                  stroke="url(#footerLogoGradient)"
+                                  stroke-width="6"
+                                  stroke-linejoin="round"
+                                  fill="none"/>
+                            <path d="M50 15V50L85 35M50 50L15 35M50 50V85"
+                                  stroke="#FFFFFF"
+                                  stroke-width="3"
+                                  opacity="0.5"
+                                  fill="none"/>
+                        </svg>
+                    </div>
+                    <div class="flex flex-col leading-none">
+                        <span class="text-2xl font-black tracking-tighter uppercase font-montserrat">
+                            SMART<span class="font-light">Solutions</span>
+                        </span>
+                        <span class="text-[10px] font-bold text-gray-400 tracking-[0.3em] uppercase">
+                            VE
+                        </span>
+                    </div>
+                </div>
+
+                <p class="text-gray-400 leading-relaxed max-w-md">
+                    {{ config.descripcion_corta }}
+                </p>
+
+                <div class="space-y-2 text-sm">
+                    <p class="flex items-center gap-3">
+                        <i class="fa-solid fa-envelope text-smart-blue"></i>
+                        <a href="mailto:{{ config.email_contacto }}" class="text-gray-400 hover:text-smart-blue transition-colors">
+                            {{ config.email_contacto }}
+                        </a>
+                    </p>
+                    <p class="flex items-center gap-3">
+                        <i class="fa-brands fa-whatsapp text-smart-green"></i>
+                        <span class="text-gray-400">{{ config.whatsapp_numero }}</span>
+                    </p>
+                    <p class="flex items-center gap-3">
+                        <i class="fa-solid fa-map-marker-alt text-smart-orange"></i>
+                        <span class="text-gray-400">Valencia, Carabobo - Venezuela</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Columna 2: Enlaces Rápidos -->
+            <div class="space-y-4">
+                <h4 class="text-sm font-black uppercase tracking-[0.2em] text-white">
+                    Navegación
+                </h4>
+                <ul class="space-y-3 text-sm">
+                    <li>
+                        <a href="#desafio" class="text-gray-400 hover:text-smart-blue transition-colors flex items-center gap-2">
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                            El Desafío
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#metodologia" class="text-gray-400 hover:text-smart-blue transition-colors flex items-center gap-2">
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                            Metodología
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#servicios" class="text-gray-400 hover:text-smart-blue transition-colors flex items-center gap-2">
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                            Servicios
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#testimonios" class="text-gray-400 hover:text-smart-blue transition-colors flex items-center gap-2">
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                            Casos de Éxito
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contacto" class="text-gray-400 hover:text-smart-blue transition-colors flex items-center gap-2">
+                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                            Contacto
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Columna 3: Redes Sociales -->
+            <div class="space-y-4">
+                <h4 class="text-sm font-black uppercase tracking-[0.2em] text-white">
+                    Síguenos
+                </h4>
+                <div class="flex flex-col gap-3">
+                    {% if config.linkedin_url %}
+                    <a href="{{ config.linkedin_url }}" target="_blank" rel="noopener noreferrer"
+                       class="flex items-center gap-3 text-gray-400 hover:text-smart-blue transition-colors group">
+                        <div class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center group-hover:bg-smart-blue transition-colors">
+                            <i class="fa-brands fa-linkedin text-lg"></i>
+                        </div>
+                        <span class="text-sm">LinkedIn</span>
+                    </a>
+                    {% endif %}
+
+                    {% if config.instagram_url %}
+                    <a href="{{ config.instagram_url }}" target="_blank" rel="noopener noreferrer"
+                       class="flex items-center gap-3 text-gray-400 hover:text-pink-500 transition-colors group">
+                        <div class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center group-hover:bg-pink-500 transition-colors">
+                            <i class="fa-brands fa-instagram text-lg"></i>
+                        </div>
+                        <span class="text-sm">Instagram</span>
+                    </a>
+                    {% endif %}
+
+                    {% if config.twitter_url %}
+                    <a href="{{ config.twitter_url }}" target="_blank" rel="noopener noreferrer"
+                       class="flex items-center gap-3 text-gray-400 hover:text-smart-blue transition-colors group">
+                        <div class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center group-hover:bg-smart-blue transition-colors">
+                            <i class="fa-brands fa-x-twitter text-lg"></i>
+                        </div>
+                        <span class="text-sm">X (Twitter)</span>
+                    </a>
+                    {% endif %}
+
+                    {% if config.facebook_url %}
+                    <a href="{{ config.facebook_url }}" target="_blank" rel="noopener noreferrer"
+                       class="flex items-center gap-3 text-gray-400 hover:text-blue-500 transition-colors group">
+                        <div class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center group-hover:bg-blue-500 transition-colors">
+                            <i class="fa-brands fa-facebook text-lg"></i>
+                        </div>
+                        <span class="text-sm">Facebook</span>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t border-white/10 pt-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+                <p class="text-center md:text-left">
+                    © {% now "Y" %} {{ config.nombre_empresa }}. Todos los derechos reservados.
+                </p>
+                <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-600">
+                    Valencia, Carabobo - Venezuela
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>

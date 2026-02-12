@@ -1,0 +1,117 @@
+{% load static custom_filters %}
+
+{% if testimonios or casos %}
+<section id="testimonios" class="py-24 px-6 bg-white">
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Título -->
+        <div class="text-center mb-16 reveal">
+            <h2 class="text-smart-navy font-black text-4xl md:text-5xl mb-4 italic font-montserrat">
+                Casos de Éxito
+            </h2>
+            <div class="w-24 h-1 bg-smart-blue mx-auto mb-6"></div>
+            <p class="text-slate-600 text-lg max-w-2xl mx-auto">
+                Resultados reales, clientes satisfechos. Así transformamos PYMEs en Venezuela.
+            </p>
+        </div>
+
+        <!-- Casos de Éxito -->
+        {% if casos %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            {% for caso in casos %}
+            <div class="bg-slate-50 rounded-3xl p-8 border border-slate-100 hover:shadow-xl transition-all card-hover reveal" style="animation-delay: {{ forloop.counter0|mul:0.1 }}s;">
+                {% if caso.imagen %}
+                <div class="mb-6 -mt-8 -mx-8 h-48 rounded-t-3xl overflow-hidden">
+                    <img src="{{ caso.imagen.url }}" alt="{{ caso.titulo }}" class="w-full h-full object-cover">
+                </div>
+                {% endif %}
+
+                <div class="mb-4">
+                    <span class="text-smart-blue text-xs font-bold uppercase tracking-wider">{{ caso.sector }}</span>
+                    <h3 class="text-xl font-black text-smart-navy mt-2 font-montserrat">{{ caso.titulo }}</h3>
+                    <p class="text-sm text-slate-600 mt-1">{{ caso.empresa }}</p>
+                </div>
+
+                <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                    {{ caso.descripcion|truncatewords:30 }}
+                </p>
+
+                <!-- Métricas -->
+                {% if caso.metricas %}
+                <div class="grid grid-cols-2 gap-4">
+                    {% for metrica in caso.metricas %}
+                    <div class="bg-white rounded-2xl p-4 text-center border border-slate-100">
+                        <div class="text-2xl font-black text-smart-blue font-mono">{{ metrica.valor }}</div>
+                        <div class="text-[10px] text-slate-500 uppercase font-bold mt-1">{{ metrica.label }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Testimonios -->
+        {% if testimonios %}
+        <div class="mt-16">
+            <h3 class="text-2xl font-black text-center mb-12 text-smart-navy font-montserrat">
+                Lo que Dicen Nuestros Clientes
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {% for testimonio in testimonios %}
+                <div class="bg-gradient-to-br from-slate-50 to-slate-100 rounded-3xl p-8 border-l-4 border-smart-blue hover:shadow-xl transition-all reveal" style="animation-delay: {{ forloop.counter0|mul:0.1 }}s;">
+
+                    <!-- Foto del Cliente -->
+                    {% if testimonio.foto %}
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="{{ testimonio.foto.url }}" alt="{{ testimonio.nombre_cliente }}"
+                             class="w-16 h-16 rounded-full object-cover border-2 border-smart-blue">
+                        <div>
+                            <p class="font-bold text-smart-navy">{{ testimonio.nombre_cliente }}</p>
+                            <p class="text-xs text-slate-600">
+                                {{ testimonio.cargo }}{% if testimonio.empresa %} - {{ testimonio.empresa }}{% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Testimonio -->
+                    <div class="mb-6">
+                        <svg class="w-8 h-8 text-smart-blue/20 mb-3" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V15C14.017 15.5523 14.4647 16 15.017 16H16.017C14.5583 16 13.5929 17.7039 13.0246 19L11.017 21V21ZM5.01765 21L5.01765 18C5.01765 16.8954 5.91243 16 7.01765 16H10.0177C10.5699 16 11.0177 15.5523 11.0177 15V9C11.0177 8.44772 10.5699 8 10.0177 8H6.01765C5.46537 8 5.01765 8.44772 5.01765 9V15C5.01765 15.5523 5.46537 16 6.01765 16H7.01765C5.55903 16 4.5936 17.7039 4.02525 19L2.01765 21V21Z"></path>
+                        </svg>
+                        <p class="text-slate-700 italic leading-relaxed text-sm">
+                            "{{ testimonio.texto }}"
+                        </p>
+                    </div>
+
+                    <!-- Resultado Clave -->
+                    {% if testimonio.resultado_clave %}
+                    <div class="bg-smart-green/10 rounded-2xl p-4 border border-smart-green/20">
+                        <div class="flex items-center gap-2 text-smart-green">
+                            <i class="fa-solid fa-chart-line text-lg"></i>
+                            <span class="font-bold text-sm">{{ testimonio.resultado_clave }}</span>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Si no hay foto, mostrar info aquí -->
+                    {% if not testimonio.foto %}
+                    <div class="mt-6 pt-6 border-t border-slate-200">
+                        <p class="font-bold text-smart-navy">{{ testimonio.nombre_cliente }}</p>
+                        <p class="text-xs text-slate-600">
+                            {{ testimonio.cargo }}{% if testimonio.empresa %} - {{ testimonio.empresa }}{% endif %}
+                        </p>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+{% endif %}
