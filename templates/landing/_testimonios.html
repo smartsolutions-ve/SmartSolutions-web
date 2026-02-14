@@ -1,117 +1,239 @@
 {% load static custom_filters %}
 
 {% if testimonios or casos %}
-<section id="testimonios" class="py-24 px-6 bg-white">
-    <div class="max-w-7xl mx-auto">
+<section id="testimonios" class="relative py-32 px-6 bg-gradient-to-b from-white via-slate-50 to-white overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 pattern-subtle-dots opacity-20"></div>
 
-        <!-- Título -->
-        <div class="text-center mb-16 reveal">
-            <h2 class="text-smart-navy font-black text-4xl md:text-5xl mb-4 italic font-montserrat">
-                Casos de Éxito
+    <!-- Decorative Blobs -->
+    <div class="absolute top-0 right-0 w-96 h-96 bg-brand-green-100 rounded-full blur-3xl opacity-30"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-brand-blue-100 rounded-full blur-3xl opacity-30"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto">
+
+        <!-- Header -->
+        <div class="text-center mb-20 reveal">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-green-50 border border-brand-green-200 mb-6">
+                <svg class="w-4 h-4 text-brand-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-xs font-bold text-brand-green-700 uppercase tracking-wider font-display">Historias de Éxito</span>
+            </div>
+
+            <h2 class="text-5xl lg:text-6xl font-black leading-[1.1] mb-6 font-display">
+                <span class="text-neutral-900">Resultados</span>
+                <span class="block mt-2 text-transparent bg-gradient-to-r from-brand-green-600 via-brand-blue-600 to-brand-green-600 bg-clip-text">
+                    Comprobados
+                </span>
             </h2>
-            <div class="w-24 h-1 bg-smart-blue mx-auto mb-6"></div>
-            <p class="text-slate-600 text-lg max-w-2xl mx-auto">
-                Resultados reales, clientes satisfechos. Así transformamos PYMEs en Venezuela.
+
+            <p class="text-xl text-neutral-600 leading-relaxed max-w-3xl mx-auto font-body">
+                <strong class="text-neutral-900">Resultados reales, clientes satisfechos.</strong> Así transformamos PYMEs en Venezuela con soluciones medibles y sostenibles.
             </p>
         </div>
 
         <!-- Casos de Éxito -->
         {% if casos %}
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {% for caso in casos %}
-            <div class="bg-slate-50 rounded-3xl p-8 border border-slate-100 hover:shadow-xl transition-all card-hover reveal" style="animation-delay: {{ forloop.counter0|mul:0.1 }}s;">
-                {% if caso.imagen %}
-                <div class="mb-6 -mt-8 -mx-8 h-48 rounded-t-3xl overflow-hidden">
-                    <img src="{{ caso.imagen.url }}" alt="{{ caso.titulo }}" class="w-full h-full object-cover">
-                </div>
-                {% endif %}
-
-                <div class="mb-4">
-                    <span class="text-smart-blue text-xs font-bold uppercase tracking-wider">{{ caso.sector }}</span>
-                    <h3 class="text-xl font-black text-smart-navy mt-2 font-montserrat">{{ caso.titulo }}</h3>
-                    <p class="text-sm text-slate-600 mt-1">{{ caso.empresa }}</p>
-                </div>
-
-                <p class="text-slate-600 text-sm leading-relaxed mb-6">
-                    {{ caso.descripcion|truncatewords:30 }}
-                </p>
-
-                <!-- Métricas -->
-                {% if caso.metricas %}
-                <div class="grid grid-cols-2 gap-4">
-                    {% for metrica in caso.metricas %}
-                    <div class="bg-white rounded-2xl p-4 text-center border border-slate-100">
-                        <div class="text-2xl font-black text-smart-blue font-mono">{{ metrica.valor }}</div>
-                        <div class="text-[10px] text-slate-500 uppercase font-bold mt-1">{{ metrica.label }}</div>
-                    </div>
-                    {% endfor %}
-                </div>
-                {% endif %}
-            </div>
-            {% endfor %}
-        </div>
-        {% endif %}
-
-        <!-- Testimonios -->
-        {% if testimonios %}
-        <div class="mt-16">
-            <h3 class="text-2xl font-black text-center mb-12 text-smart-navy font-montserrat">
-                Lo que Dicen Nuestros Clientes
-            </h3>
-
+        <div class="mb-24">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {% for testimonio in testimonios %}
-                <div class="bg-gradient-to-br from-slate-50 to-slate-100 rounded-3xl p-8 border-l-4 border-smart-blue hover:shadow-xl transition-all reveal" style="animation-delay: {{ forloop.counter0|mul:0.1 }}s;">
+                {% for caso in casos %}
+                <div class="group relative reveal" style="animation-delay: {{ forloop.counter0|mul:0.1 }}s;">
+                    <!-- Glow Effect -->
+                    <div class="absolute -inset-1 bg-gradient-to-br from-brand-blue-600/10 to-brand-green-600/10 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                    <!-- Foto del Cliente -->
-                    {% if testimonio.foto %}
-                    <div class="flex items-center gap-4 mb-6">
-                        <img src="{{ testimonio.foto.url }}" alt="{{ testimonio.nombre_cliente }}"
-                             class="w-16 h-16 rounded-full object-cover border-2 border-smart-blue">
-                        <div>
-                            <p class="font-bold text-smart-navy">{{ testimonio.nombre_cliente }}</p>
-                            <p class="text-xs text-slate-600">
-                                {{ testimonio.cargo }}{% if testimonio.empresa %} - {{ testimonio.empresa }}{% endif %}
+                    <!-- Card -->
+                    <div class="relative h-full bg-white rounded-[2rem] overflow-hidden border-2 border-neutral-100 group-hover:border-brand-blue-200 transition-all duration-300 shadow-lg group-hover:shadow-xl">
+
+                        <!-- Image -->
+                        {% if caso.imagen %}
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="{{ caso.imagen.url }}" alt="{{ caso.titulo }}"
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <!-- Gradient Overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+
+                            <!-- Sector Badge -->
+                            <div class="absolute top-4 left-4">
+                                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card border border-white/20 backdrop-blur-xl">
+                                    <span class="w-2 h-2 rounded-full bg-brand-green-400"></span>
+                                    <span class="text-xs font-bold uppercase tracking-wider text-white font-display">
+                                        {{ caso.sector }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        {% else %}
+                        <!-- Fallback Pattern Background -->
+                        <div class="relative h-56 bg-gradient-to-br from-brand-blue-600 to-brand-green-600 pattern-subtle-grid">
+                            <div class="absolute top-4 left-4">
+                                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card border border-white/20 backdrop-blur-xl">
+                                    <span class="w-2 h-2 rounded-full bg-white"></span>
+                                    <span class="text-xs font-bold uppercase tracking-wider text-white font-display">
+                                        {{ caso.sector }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Content -->
+                        <div class="p-8">
+                            <!-- Title -->
+                            <h3 class="text-2xl font-black text-neutral-900 mb-2 font-display group-hover:text-brand-blue-600 transition-colors duration-300">
+                                {{ caso.titulo }}
+                            </h3>
+
+                            <!-- Company -->
+                            <p class="text-sm text-brand-blue-600 font-semibold mb-4 font-body">
+                                {{ caso.empresa }}
                             </p>
+
+                            <!-- Description -->
+                            <p class="text-neutral-600 text-sm leading-relaxed mb-6 font-body">
+                                {{ caso.descripcion|truncatewords:25 }}
+                            </p>
+
+                            <!-- Metrics -->
+                            {% if caso.metricas %}
+                            <div class="grid grid-cols-2 gap-3 pt-6 border-t border-neutral-100">
+                                {% for metrica in caso.metricas %}
+                                <div class="relative group/metric">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-brand-blue-500/5 to-brand-green-500/5 rounded-xl opacity-0 group-hover/metric:opacity-100 transition-opacity duration-300"></div>
+                                    <div class="relative bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl p-4 text-center border border-neutral-100 group-hover/metric:border-brand-blue-200 transition-all duration-300">
+                                        <div class="text-3xl font-black text-transparent bg-gradient-to-r from-brand-blue-600 to-brand-green-600 bg-clip-text font-mono">
+                                            {{ metrica.valor }}
+                                        </div>
+                                        <div class="text-[10px] text-neutral-500 uppercase font-bold mt-1 tracking-wider font-display">
+                                            {{ metrica.label }}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Hover CTA -->
+                        <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-white via-white to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <a href="#contacto" class="flex items-center justify-center gap-2 w-full px-4 py-3 bg-gradient-to-r from-brand-blue-600 to-brand-green-600 rounded-xl font-bold text-white text-sm shadow-primary hover:shadow-primary-lg transition-all duration-300 font-display">
+                                <span>Ver Caso Completo</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                                </svg>
+                            </a>
                         </div>
                     </div>
-                    {% endif %}
-
-                    <!-- Testimonio -->
-                    <div class="mb-6">
-                        <svg class="w-8 h-8 text-smart-blue/20 mb-3" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V15C14.017 15.5523 14.4647 16 15.017 16H16.017C14.5583 16 13.5929 17.7039 13.0246 19L11.017 21V21ZM5.01765 21L5.01765 18C5.01765 16.8954 5.91243 16 7.01765 16H10.0177C10.5699 16 11.0177 15.5523 11.0177 15V9C11.0177 8.44772 10.5699 8 10.0177 8H6.01765C5.46537 8 5.01765 8.44772 5.01765 9V15C5.01765 15.5523 5.46537 16 6.01765 16H7.01765C5.55903 16 4.5936 17.7039 4.02525 19L2.01765 21V21Z"></path>
-                        </svg>
-                        <p class="text-slate-700 italic leading-relaxed text-sm">
-                            "{{ testimonio.texto }}"
-                        </p>
-                    </div>
-
-                    <!-- Resultado Clave -->
-                    {% if testimonio.resultado_clave %}
-                    <div class="bg-smart-green/10 rounded-2xl p-4 border border-smart-green/20">
-                        <div class="flex items-center gap-2 text-smart-green">
-                            <i class="fa-solid fa-chart-line text-lg"></i>
-                            <span class="font-bold text-sm">{{ testimonio.resultado_clave }}</span>
-                        </div>
-                    </div>
-                    {% endif %}
-
-                    <!-- Si no hay foto, mostrar info aquí -->
-                    {% if not testimonio.foto %}
-                    <div class="mt-6 pt-6 border-t border-slate-200">
-                        <p class="font-bold text-smart-navy">{{ testimonio.nombre_cliente }}</p>
-                        <p class="text-xs text-slate-600">
-                            {{ testimonio.cargo }}{% if testimonio.empresa %} - {{ testimonio.empresa }}{% endif %}
-                        </p>
-                    </div>
-                    {% endif %}
                 </div>
                 {% endfor %}
             </div>
         </div>
         {% endif %}
 
+        <!-- Testimonios -->
+        {% if testimonios %}
+        <div class="reveal" style="animation-delay: 0.2s;">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h3 class="text-3xl lg:text-4xl font-black text-neutral-900 mb-4 font-display">
+                    Lo que Dicen <span class="text-transparent bg-gradient-to-r from-brand-blue-600 to-brand-green-600 bg-clip-text">Nuestros Clientes</span>
+                </h3>
+                <p class="text-neutral-600 font-body">Testimonios reales de empresarios venezolanos</p>
+            </div>
+
+            <!-- Testimonials Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {% for testimonio in testimonios %}
+                <div class="group relative reveal" style="animation-delay: {{ forloop.counter0|mul:0.1 }}s;">
+                    <!-- Glow Effect -->
+                    <div class="absolute -inset-1 bg-gradient-to-br from-brand-green-600/10 to-brand-blue-600/10 rounded-[2rem] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                    <!-- Card -->
+                    <div class="relative h-full bg-white rounded-[2rem] p-8 border-2 border-neutral-100 group-hover:border-brand-green-200 transition-all duration-300 shadow-lg group-hover:shadow-xl">
+
+                        <!-- Quote Icon -->
+                        <div class="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
+                            <svg class="w-16 h-16 text-brand-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V15C14.017 15.5523 14.4647 16 15.017 16H16.017C14.5583 16 13.5929 17.7039 13.0246 19L11.017 21V21ZM5.01765 21L5.01765 18C5.01765 16.8954 5.91243 16 7.01765 16H10.0177C10.5699 16 11.0177 15.5523 11.0177 15V9C11.0177 8.44772 10.5699 8 10.0177 8H6.01765C5.46537 8 5.01765 8.44772 5.01765 9V15C5.01765 15.5523 5.46537 16 6.01765 16H7.01765C5.55903 16 4.5936 17.7039 4.02525 19L2.01765 21V21Z"/>
+                            </svg>
+                        </div>
+
+                        <!-- Client Photo & Info -->
+                        <div class="flex items-center gap-4 mb-6 relative z-10">
+                            {% if testimonio.foto %}
+                            <div class="relative">
+                                <div class="absolute inset-0 bg-gradient-to-br from-brand-blue-500 to-brand-green-500 rounded-full blur group-hover:blur-md transition-all duration-300"></div>
+                                <img src="{{ testimonio.foto.url }}" alt="{{ testimonio.nombre_cliente }}"
+                                     class="relative w-14 h-14 rounded-full object-cover border-2 border-white shadow-lg">
+                            </div>
+                            {% else %}
+                            <div class="w-14 h-14 bg-gradient-to-br from-brand-blue-500 to-brand-green-500 rounded-full flex items-center justify-center text-white text-xl font-black shadow-lg font-display">
+                                {{ testimonio.nombre_cliente|slice:":1"|upper }}
+                            </div>
+                            {% endif %}
+
+                            <div class="flex-1">
+                                <p class="font-black text-neutral-900 text-sm font-display">{{ testimonio.nombre_cliente }}</p>
+                                <p class="text-xs text-neutral-600 font-body">
+                                    {{ testimonio.cargo }}
+                                </p>
+                                {% if testimonio.empresa %}
+                                <p class="text-xs text-brand-blue-600 font-semibold font-body">{{ testimonio.empresa }}</p>
+                                {% endif %}
+                            </div>
+
+                            <!-- Rating Stars -->
+                            <div class="flex gap-0.5">
+                                {% for i in "12345" %}
+                                <svg class="w-4 h-4 text-brand-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                </svg>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- Testimonial Text -->
+                        <div class="mb-6">
+                            <p class="text-neutral-700 italic leading-relaxed text-sm font-body">
+                                "{{ testimonio.texto }}"
+                            </p>
+                        </div>
+
+                        <!-- Result Badge -->
+                        {% if testimonio.resultado_clave %}
+                        <div class="mt-auto pt-6 border-t border-neutral-100">
+                            <div class="flex items-center gap-2 px-4 py-3 bg-gradient-to-br from-brand-green-50 to-brand-blue-50 rounded-xl border border-brand-green-200/50">
+                                <div class="flex-shrink-0 w-8 h-8 bg-brand-green-500 rounded-lg flex items-center justify-center shadow-accent">
+                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                                    </svg>
+                                </div>
+                                <span class="font-bold text-sm text-brand-green-700 font-body">{{ testimonio.resultado_clave }}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Decorative Corner -->
+                        <div class="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-tl from-brand-green-500/5 to-transparent rounded-tl-[2rem] opacity-50 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Bottom CTA -->
+        <div class="mt-20 text-center reveal" style="animation-delay: 0.4s;">
+            <div class="inline-block bg-white rounded-2xl p-8 shadow-xl border-2 border-neutral-100">
+                <p class="text-sm text-neutral-600 mb-4 font-body">¿Quieres ser nuestro próximo caso de éxito?</p>
+                <a href="#contacto"
+                   class="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-brand-green-600 to-brand-blue-600 rounded-xl font-bold text-white shadow-accent hover:shadow-accent-lg transition-all duration-300 hover:-translate-y-1 font-display">
+                    <span>Comienza Ahora</span>
+                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
     </div>
 </section>
 {% endif %}
