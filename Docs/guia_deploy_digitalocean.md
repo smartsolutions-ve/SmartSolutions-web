@@ -130,47 +130,44 @@ docker-compose --version
 
 ## Fase 4: Subir el Proyecto
 
-### 4.1 Desde tu computadora local
+El proyecto está en GitHub en `https://github.com/smartsolutions-ve/SmartSolutions-web`.
+No se usa ZIP — el servidor clona el repositorio directamente.
+
+### 4.1 Desde tu computadora: hacer push
 
 ```bash
-# Ir al directorio padre del proyecto
-cd "/home/sabh/Documentos/Smart Solutions"
+cd "/home/sabh/Documentos/Smart Solutions/smartsolutions"
 
-# Comprimir solo el directorio smartsolutions/ (excluye venv, cache, .git)
-zip -r smartsolutions.zip smartsolutions/ \
-  -x "smartsolutions/venv/*" \
-  -x "smartsolutions/__pycache__/*" \
-  -x "smartsolutions/**/__pycache__/*" \
-  -x "smartsolutions/**/*.pyc" \
-  -x "smartsolutions/.git/*" \
-  -x "smartsolutions/db.sqlite3" \
-  -x "smartsolutions/.env"
+# Verificar que todo esté commiteado
+git status
 
-# Subir al servidor
-scp smartsolutions.zip deploy@TU_IP:~/
+# Hacer push al repositorio
+git push origin main
 ```
 
-### 4.2 En el servidor
+### 4.2 En el servidor: clonar el repositorio
 
 ```bash
-# Crear estructura de directorios
-mkdir -p ~/smartsolutions
+# Instalar git (si no está)
+sudo apt install -y git
 
-# Descomprimir (el ZIP contiene la carpeta smartsolutions/)
+# Clonar el repositorio en el home de deploy
 cd ~
-unzip smartsolutions.zip
+git clone https://github.com/smartsolutions-ve/SmartSolutions-web.git smartsolutions
 
 # Verificar estructura
 ls ~/smartsolutions/
-# Debes ver: apps/ config/ manage.py requirements.txt static/ templates/ ...
+# Debes ver: apps/ config/ manage.py requirements.txt static/ templates/ Docs/ ...
 
-# Crear directorios necesarios
+# Crear directorios que no van en Git (.gitignore los excluye)
 mkdir -p ~/smartsolutions/postgres-data
 mkdir -p ~/smartsolutions/nginx/conf.d
 mkdir -p ~/smartsolutions/certbot/{conf,www}
 mkdir -p ~/smartsolutions/staticfiles
 mkdir -p ~/smartsolutions/media
 ```
+
+**Nota:** El `.gitignore` ya excluye correctamente `venv/`, `.env`, `db.sqlite3`, `media/` y `staticfiles/`. Nunca se subirán datos sensibles al repositorio.
 
 ---
 
@@ -752,27 +749,26 @@ docker system prune -a
 ### Deploy de actualizaciones
 
 ```bash
-# 1. Desde tu computadora local: comprimir y subir
-cd "/home/sabh/Documentos/Smart Solutions"
-zip -r smartsolutions_update.zip smartsolutions/ \
-  -x "smartsolutions/venv/*" \
-  -x "smartsolutions/**/__pycache__/*" \
-  -x "smartsolutions/**/*.pyc" \
-  -x "smartsolutions/db.sqlite3" \
-  -x "smartsolutions/.env"
-scp smartsolutions_update.zip deploy@TU_IP:~/
+# 1. Desde tu computadora local: commit y push
+cd "/home/sabh/Documentos/Smart Solutions/smartsolutions"
+git add -p                          # Revisar cambios antes de agregar
+git commit -m "descripción del cambio"
+git push origin main
 
-# 2. En el servidor
+# 2. En el servidor: bajar cambios y reconstruir
+ssh deploy@TU_IP
 cd ~
-unzip -o smartsolutions_update.zip
+git -C smartsolutions pull origin main
 
-# 3. Reconstruir y reiniciar
+# 3. Reconstruir imagen y reiniciar Django
 docker-compose build web
 docker-compose up -d --force-recreate web
 
 # 4. Verificar
 docker-compose logs -f web
 ```
+
+El flujo completo tarda menos de 2 minutos.
 
 ---
 
