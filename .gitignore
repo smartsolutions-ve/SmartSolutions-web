@@ -32,3 +32,12 @@ Thumbs.db
 
 # Docker
 *.override.yml
+
+# Archivos sensibles (claves, conexiones, notas privadas)
+Docs/*clave*.txt
+Docs/*key*.txt
+Docs/*secret*.txt
+Docs/*password*.txt
+Docs/*conexion*.txt
+Docs/*ssh*.txt
+notas_privadas.md
