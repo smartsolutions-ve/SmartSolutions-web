@@ -171,3 +171,199 @@ class Lead(models.Model):
 
     def __str__(self):
         return f"{self.nombre} ({self.email}) — {self.get_estado_display()}"
+
+
+# ─────────────────────────────────────────
+# SISTEMA DE FORMULARIOS DINÁMICOS
+# ─────────────────────────────────────────
+
+class Formulario(models.Model):
+    """
+    Formulario de levantamiento de información configurable desde el admin.
+    Puede tener múltiples fases, cada una con sus propias preguntas.
+    """
+    nombre = models.CharField(max_length=150, help_text="Nombre interno del formulario")
+    slug = models.SlugField(
+        unique=True,
+        help_text="URL amigable: diagnostico-empresarial → /formulario/diagnostico-empresarial/"
+    )
+    descripcion = models.TextField(
+        blank=True,
+        help_text="Descripción visible para el usuario al inicio del formulario"
+    )
+    activo = models.BooleanField(default=True)
+    es_principal = models.BooleanField(
+        default=False,
+        help_text="Si está activo, este formulario reemplaza el formulario de contacto en la landing page"
+    )
+    creado_en = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Formulario"
+        verbose_name_plural = "Formularios"
+        ordering = ['-es_principal', 'nombre']
+
+    def __str__(self):
+        return f"{self.nombre}{'  [PRINCIPAL]' if self.es_principal else ''}"
+
+    @property
+    def fases_activas(self):
+        return self.fases.order_by('orden')
+
+
+class FaseFormulario(models.Model):
+    """Una fase/paso dentro de un formulario."""
+    formulario = models.ForeignKey(
+        Formulario, on_delete=models.CASCADE, related_name='fases'
+    )
+    titulo = models.CharField(max_length=150)
+    descripcion = models.TextField(
+        blank=True,
+        help_text="Texto explicativo que verá el usuario en esta fase"
+    )
+    orden = models.PositiveSmallIntegerField(default=0)
+    icono = models.CharField(
+        max_length=10, blank=True,
+        help_text="Emoji o código de icono (ej: 🏢, 📊)"
+    )
+
+    class Meta:
+        verbose_name = "Fase del Formulario"
+        verbose_name_plural = "Fases del Formulario"
+        ordering = ['orden']
+
+    def __str__(self):
+        return f"[{self.formulario.nombre}] Fase {self.orden}: {self.titulo}"
+
+    @property
+    def preguntas_activas(self):
+        return self.preguntas.order_by('orden')
+
+
+class PreguntaFormulario(models.Model):
+    """Una pregunta/campo dentro de una fase de un formulario."""
+
+    TIPOS_CAMPO = [
+        ('text', 'Texto corto'),
+        ('email', 'Email'),
+        ('tel', 'Teléfono'),
+        ('number', 'Número'),
+        ('textarea', 'Texto largo'),
+        ('select', 'Lista desplegable'),
+        ('radio', 'Opción única (radio)'),
+        ('checkbox', 'Opción múltiple (checkbox)'),
+        ('date', 'Fecha'),
+    ]
+
+    ANCHOS = [
+        ('full', 'Ancho completo (100%)'),
+        ('half', 'Medio ancho (50%)'),
+    ]
+
+    fase = models.ForeignKey(
+        FaseFormulario, on_delete=models.CASCADE, related_name='preguntas'
+    )
+    tipo_campo = models.CharField(max_length=20, choices=TIPOS_CAMPO, default='text')
+    etiqueta = models.CharField(max_length=200, help_text="Texto del label visible")
+    placeholder = models.CharField(max_length=200, blank=True)
+    texto_ayuda = models.CharField(
+        max_length=300, blank=True,
+        help_text="Texto de ayuda debajo del campo"
+    )
+    requerido = models.BooleanField(default=True)
+    opciones = models.TextField(
+        blank=True,
+        help_text="Solo para select/radio/checkbox. Una opción por línea."
+    )
+    ancho = models.CharField(max_length=10, choices=ANCHOS, default='full')
+    orden = models.PositiveSmallIntegerField(default=0)
+
+    # Lógica condicional
+    condicion_pregunta = models.ForeignKey(
+        'self',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='dependientes',
+        help_text="Mostrar esta pregunta solo si la respuesta a OTRA pregunta cumple una condición"
+    )
+    condicion_valor = models.CharField(
+        max_length=200, blank=True,
+        help_text="Valor exacto que debe tener la respuesta de la pregunta condicional"
+    )
+
+    class Meta:
+        verbose_name = "Pregunta"
+        verbose_name_plural = "Preguntas"
+        ordering = ['orden']
+
+    def __str__(self):
+        return f"{self.etiqueta} ({self.get_tipo_campo_display()})"
+
+    def get_opciones_list(self):
+        """Retorna las opciones como lista de tuplas (valor, label)."""
+        if not self.opciones:
+            return []
+        lineas = [l.strip() for l in self.opciones.strip().splitlines() if l.strip()]
+        return [(l, l) for l in lineas]
+
+
+class SesionFormulario(models.Model):
+    """
+    Registro de un usuario que está completando (o completó) un formulario.
+    Almacena el estado de avance entre fases.
+    """
+    formulario = models.ForeignKey(
+        Formulario, on_delete=models.CASCADE, related_name='sesiones'
+    )
+    lead = models.ForeignKey(
+        Lead, null=True, blank=True,
+        on_delete=models.SET_NULL, related_name='sesiones_formulario'
+    )
+    fase_actual = models.PositiveSmallIntegerField(default=1)
+    completado = models.BooleanField(default=False)
+    ip_origen = models.GenericIPAddressField(null=True, blank=True)
+    creado_en = models.DateTimeField(auto_now_add=True)
+    actualizado_en = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Sesión / Respuesta Recibida"
+        verbose_name_plural = "Sesiones / Respuestas Recibidas"
+        ordering = ['-creado_en']
+
+    def __str__(self):
+        estado = '✅ Completada' if self.completado else f'⏳ Fase {self.fase_actual}'
+        nombre = self.lead.nombre if self.lead else 'Anónimo'
+        return f"{self.formulario.nombre} — {nombre} ({estado})"
+
+    def get_respuestas_agrupadas(self):
+        """Retorna respuestas agrupadas por fase para email/admin."""
+        resultado = []
+        for fase in self.formulario.fases_activas:
+            respuestas_fase = self.respuestas.filter(
+                pregunta__fase=fase
+            ).select_related('pregunta').order_by('pregunta__orden')
+            if respuestas_fase.exists():
+                resultado.append({
+                    'fase': fase,
+                    'respuestas': respuestas_fase,
+                })
+        return resultado
+
+
+class RespuestaFormulario(models.Model):
+    """Una respuesta individual a una pregunta de un formulario."""
+    sesion = models.ForeignKey(
+        SesionFormulario, on_delete=models.CASCADE, related_name='respuestas'
+    )
+    pregunta = models.ForeignKey(
+        PreguntaFormulario, on_delete=models.CASCADE, related_name='respuestas'
+    )
+    valor = models.TextField(blank=True)
+
+    class Meta:
+        verbose_name = "Respuesta"
+        verbose_name_plural = "Respuestas"
+        unique_together = [('sesion', 'pregunta')]
+
+    def __str__(self):
+        return f"{self.pregunta.etiqueta}: {self.valor[:60]}"

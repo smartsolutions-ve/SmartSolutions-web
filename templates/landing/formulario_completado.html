@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}¡Gracias! | SmartSolutions VE{% endblock %}
+
+{% block content %}
+<div class="pt-32 pb-20 bg-slate-50 min-h-screen">
+    <div class="max-w-3xl mx-auto px-6">
+        <div class="bg-white rounded-[2.5rem] shadow-2xl border border-neutral-100 overflow-hidden">
+            {% include 'components/formulario_completado.html' %}
+        </div>
+    </div>
+</div>
+{% endblock %}

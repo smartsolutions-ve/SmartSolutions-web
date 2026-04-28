@@ -487,6 +487,68 @@ p {
   h3 { font-size: var(--text-3xl); }
 }
 
+/* ===== MARQUEE ===== */
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+.marquee-inner {
+  display: flex;
+  animation: marquee 32s linear infinite;
+  width: max-content;
+}
+.marquee:hover .marquee-inner {
+  animation-play-state: paused;
+}
+
+/* ===== LIFT (card hover lift) ===== */
+.lift {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== PROGRESS BARS ===== */
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0066FF, #3385FF);
+  border-radius: inherit;
+  width: 0;
+  transition: width 1.5s ease;
+}
+
+/* ===== FAQ ===== */
+.faq-body {
+  display: none;
+  overflow: hidden;
+}
+.faq-body.open {
+  display: block;
+}
+.faq-icon {
+  transition: transform 0.3s ease;
+}
+.faq-open .faq-icon {
+  transform: rotate(45deg);
+}
+
+/* ===== EXTRA PATTERNS ===== */
+.dot-pattern {
+  background-image: radial-gradient(circle at 2px 2px, rgba(0, 0, 0, 0.05) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+.dot-pattern-dark {
+  background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.06) 1px, transparent 0);
+  background-size: 28px 28px;
+}
+.grid-pattern-light {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
 /* ===== ACCESIBILIDAD ===== */
 @media (prefers-reduced-motion: reduce) {
   *,

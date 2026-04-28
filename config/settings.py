@@ -205,6 +205,16 @@ UNFOLD = {
                         "icon": "people",
                         "link": "/admin/landing/lead/",
                     },
+                    {
+                        "title": "Formularios",
+                        "icon": "assignment",
+                        "link": "/admin/landing/formulario/",
+                    },
+                    {
+                        "title": "Respuestas Recibidas",
+                        "icon": "quiz",
+                        "link": "/admin/landing/sesionformulario/",
+                    },
                 ],
             },
             {

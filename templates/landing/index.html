@@ -8,14 +8,23 @@
 <!-- HERO SECTION -->
 {% include 'landing/_hero.html' %}
 
+<!-- CLIENTES MARQUEE -->
+{% include 'landing/_clientes_marquee.html' %}
+
+<!-- MÉTRICAS COUNTER -->
+{% include 'landing/_metricas_counter.html' %}
+
 <!-- EL DESAFÍO -->
 {% include 'landing/_desafio.html' %}
+
+<!-- SERVICIOS -->
+{% include 'landing/_servicios.html' %}
 
 <!-- METODOLOGÍA -->
 {% include 'landing/_metodologia.html' %}
 
-<!-- SERVICIOS -->
-{% include 'landing/_servicios.html' %}
+<!-- EQUIPO -->
+{% include 'landing/_equipo.html' %}
 
 <!-- TESTIMONIOS / CASOS DE ÉXITO -->
 {% include 'landing/_testimonios.html' %}
@@ -23,7 +32,67 @@
 <!-- CITA INSPIRACIONAL -->
 {% include 'landing/_cita.html' %}
 
-<!-- FORMULARIO DE CONTACTO -->
-{% include 'landing/_contacto.html' %}
+<!-- FAQ -->
+{% include 'landing/_faq.html' %}
 
+<!-- PRECIOS -->
+{% include 'landing/_precios.html' %}
+
+<!-- FORMULARIO DE CONTACTO / LEVANTAMIENTO DE INFORMACIÓN -->
+{% if formulario_principal %}
+    {% include 'landing/_formulario_dinamico.html' with formulario_principal=formulario_principal %}
+{% else %}
+    {% include 'landing/_contacto.html' %}
+{% endif %}
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Animación de contadores
+function animateCounter(el) {
+    const target = parseInt(el.dataset.target);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    let cur = 0;
+    const step = Math.max(1, Math.floor(target / 60));
+    const timer = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        el.textContent = prefix + cur + suffix;
+        if (cur >= target) clearInterval(timer);
+    }, 25);
+}
+
+const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.querySelectorAll('[data-target]').forEach(animateCounter);
+            counterObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.counter-item').forEach(el => {
+    const section = el.closest('section');
+    if (section && !section.__counterAttached) {
+        counterObserver.observe(section);
+        section.__counterAttached = true;
+    }
+});
+
+// FAQ toggle
+function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const body = item.querySelector('.faq-body');
+    const isOpen = body.classList.contains('open');
+    document.querySelectorAll('.faq-body.open').forEach(b => {
+        b.classList.remove('open');
+        b.closest('.faq-item').classList.remove('faq-open');
+    });
+    if (!isOpen) {
+        body.classList.add('open');
+        item.classList.add('faq-open');
+    }
+}
+</script>
 {% endblock %}

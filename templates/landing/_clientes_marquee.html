@@ -1,0 +1,84 @@
+{% load static %}
+
+<section id="clientes" class="relative bg-brand-navy-950 border-t border-white/5 py-14 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 mb-8 text-center">
+        <p class="text-xs uppercase tracking-[.2em] text-slate-500 font-semibold font-display">
+            Empresas venezolanas que confían en nosotros
+        </p>
+    </div>
+
+    <div class="marquee overflow-hidden">
+        <div class="marquee-inner">
+            <!-- Logos — primera pasada -->
+            <div class="flex items-center gap-12 px-6">
+                <div class="h-10 px-8 glass-card rounded-xl flex items-center gap-2 flex-shrink-0">
+                    <div class="w-6 h-6 rounded-md bg-gradient-to-br from-brand-blue-500 to-brand-blue-600"></div>
+                    <span class="text-sm font-bold text-slate-300 font-display">Distribuidora Carabobo</span>
+                </div>
+                <div class="h-10 px-8 glass-card rounded-xl flex items-center gap-2 flex-shrink-0">
+                    <div class="w-6 h-6 rounded-md bg-gradient-to-br from-brand-green-500 to-brand-green-600"></div>
+                    <span class="text-sm font-bold text-slate-300 font-display">Grupo Comercial Valencia</span>
+                </div>
+                <div class="h-10 px-8 glass-card rounded-xl flex items-center gap-2 flex-shrink-0">
+                    <div class="w-6 h-6 rounded-md bg-gradient-to-br from-brand-amber-500 to-brand-amber-600"></div>
+                    <span class="text-sm font-bold text-slate-300 font-display">Tech Andina C.A.</span>
+                </div>
+                <div class="h-10 px-8 glass-card rounded-xl flex items-center gap-2 flex-shrink-0">
+                    <div class="w-6 h-6 rounded-md bg-gradient-to-br from-brand-blue-400 to-brand-green-500"></div>
+                    <span class="text-sm font-bold text-slate-300 font-display">Constructora Norte</span>
+                </div>
+                <div class="h-10 px-8 glass-card rounded-xl flex items-center gap-2 flex-shrink-0">
+                    <div class="w-6 h-6 rounded-md bg-gradient-to-br from-purple-500 to-brand-blue-600"></div>
+                    <span class="text-sm font-bold text-slate-300 font-display">Inversiones Bolívar</span>
+                </div>
+                <div class="h-10 px-8 glass-card rounded-xl flex items-center gap-2 flex-shrink-0">
+                    <div class="w-6 h-6 rounded-md bg-gradient-to-br from-red-500 to-orange-500"></div>
+                    <span class="text-sm font-bold text-slate-300 font-display">Agro Llanos S.A.</span>
+                </div>
+                <div class="h-10 px-8 glass-card rounded-xl flex items-center gap-2 flex-shrink-0">
+                    <div class="w-6 h-6 rounded-md bg-gradient-to-br from-teal-500 to-brand-green-500"></div>
+                    <span class="text-sm font-bold text-slate-300 font-display">Farma Express</span>
+                </div>
+                <div class="h-10 px-8 glass-card rounded-xl flex items-center gap-2 flex-shrink-0">
+                    <div class="w-6 h-6 rounded-md bg-gradient-to-br from-brand-blue-600 to-brand-navy-800"></div>
+                    <span class="text-sm font-bold text-slate-300 font-display">Consultores Oriente</span>
+                </div>
+            </div>
+            <!-- Duplicado para loop infinito sin salto -->
+            <div class="flex items-center gap-12 px-6" aria-hidden="true">
+                <div class="h-10 px-8 glass-card rounded-xl flex items-center gap-2 flex-shrink-0">
+                    <div class="w-6 h-6 rounded-md bg-gradient-to-br from-brand-blue-500 to-brand-blue-600"></div>
+                    <span class="text-sm font-bold text-slate-300 font-display">Distribuidora Carabobo</span>
+                </div>
+                <div class="h-10 px-8 glass-card rounded-xl flex items-center gap-2 flex-shrink-0">
+                    <div class="w-6 h-6 rounded-md bg-gradient-to-br from-brand-green-500 to-brand-green-600"></div>
+                    <span class="text-sm font-bold text-slate-300 font-display">Grupo Comercial Valencia</span>
+                </div>
+                <div class="h-10 px-8 glass-card rounded-xl flex items-center gap-2 flex-shrink-0">
+                    <div class="w-6 h-6 rounded-md bg-gradient-to-br from-brand-amber-500 to-brand-amber-600"></div>
+                    <span class="text-sm font-bold text-slate-300 font-display">Tech Andina C.A.</span>
+                </div>
+                <div class="h-10 px-8 glass-card rounded-xl flex items-center gap-2 flex-shrink-0">
+                    <div class="w-6 h-6 rounded-md bg-gradient-to-br from-brand-blue-400 to-brand-green-500"></div>
+                    <span class="text-sm font-bold text-slate-300 font-display">Constructora Norte</span>
+                </div>
+                <div class="h-10 px-8 glass-card rounded-xl flex items-center gap-2 flex-shrink-0">
+                    <div class="w-6 h-6 rounded-md bg-gradient-to-br from-purple-500 to-brand-blue-600"></div>
+                    <span class="text-sm font-bold text-slate-300 font-display">Inversiones Bolívar</span>
+                </div>
+                <div class="h-10 px-8 glass-card rounded-xl flex items-center gap-2 flex-shrink-0">
+                    <div class="w-6 h-6 rounded-md bg-gradient-to-br from-red-500 to-orange-500"></div>
+                    <span class="text-sm font-bold text-slate-300 font-display">Agro Llanos S.A.</span>
+                </div>
+                <div class="h-10 px-8 glass-card rounded-xl flex items-center gap-2 flex-shrink-0">
+                    <div class="w-6 h-6 rounded-md bg-gradient-to-br from-teal-500 to-brand-green-500"></div>
+                    <span class="text-sm font-bold text-slate-300 font-display">Farma Express</span>
+                </div>
+                <div class="h-10 px-8 glass-card rounded-xl flex items-center gap-2 flex-shrink-0">
+                    <div class="w-6 h-6 rounded-md bg-gradient-to-br from-brand-blue-600 to-brand-navy-800"></div>
+                    <span class="text-sm font-bold text-slate-300 font-display">Consultores Oriente</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {% if formulario %}{{ formulario.nombre }}{% else %}Formulario de Diagnóstico{% endif %} | SmartSolutions VE
+{% endblock %}
+
+{% block content %}
+<div class="pt-20">
+    {% include 'landing/_formulario_dinamico.html' with formulario_principal=formulario %}
+</div>
+
+{# Cargar Fase 1 si es necesario (el partial HTMX lo hará solo si se navega, pero aquí lo forzamos si no hay sesion) #}
+{% if sesion %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Si entramos directo a una sesión, podríamos querer cargar la fase vía HTMX inmediatamente
+        // Pero por ahora, el template _formulario_dinamico tiene un botón "Empezar". 
+    });
+</script>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,86 @@
+{% load static %}
+
+<section id="faq" class="relative py-28 px-6 bg-white overflow-hidden">
+    <div class="relative z-10 max-w-4xl mx-auto">
+
+        <!-- Header -->
+        <div class="text-center mb-16 reveal">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-blue-50 border border-brand-blue-200 mb-5">
+                <svg class="w-3.5 h-3.5 text-brand-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span class="text-xs font-bold text-brand-blue-700 uppercase tracking-wider font-display">Preguntas Frecuentes</span>
+            </div>
+            <h2 class="text-5xl font-black text-neutral-900 mb-4 font-display">
+                Todo lo que<br>
+                <span class="text-transparent bg-gradient-to-r from-brand-blue-600 to-brand-blue-400 bg-clip-text">necesitas saber</span>
+            </h2>
+            <p class="text-neutral-600 text-lg font-body">Respuestas directas a las dudas más comunes.</p>
+        </div>
+
+        <!-- Preguntas -->
+        <div class="space-y-3 reveal">
+
+            <div class="faq-item bg-white border-2 border-neutral-100 rounded-2xl overflow-hidden hover:border-brand-blue-200 transition-colors duration-300">
+                <button class="faq-btn w-full flex items-center justify-between gap-4 p-6 text-left" onclick="toggleFaq(this)">
+                    <span class="font-bold text-neutral-900 text-base font-display">¿En cuánto tiempo veo resultados?</span>
+                    <svg class="faq-icon w-5 h-5 text-brand-blue-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
+                    </svg>
+                </button>
+                <div class="faq-body px-6 pb-6">
+                    <p class="text-neutral-600 text-sm leading-relaxed font-body">Los primeros indicadores de mejora se ven en las primeras 4–6 semanas. Para proyectos completos, garantizamos ROI visible en 90 días o menos. El diagnóstico inicial es el primer paso — y es gratuito.</p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white border-2 border-neutral-100 rounded-2xl overflow-hidden hover:border-brand-blue-200 transition-colors duration-300">
+                <button class="faq-btn w-full flex items-center justify-between gap-4 p-6 text-left" onclick="toggleFaq(this)">
+                    <span class="font-bold text-neutral-900 text-base font-display">¿Trabajan solo con empresas en Valencia?</span>
+                    <svg class="faq-icon w-5 h-5 text-brand-blue-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
+                    </svg>
+                </button>
+                <div class="faq-body px-6 pb-6">
+                    <p class="text-neutral-600 text-sm leading-relaxed font-body">Tenemos base en Valencia, Carabobo, pero trabajamos con empresas en todo Venezuela — Caracas, Maracaibo, Barquisimeto, entre otras. Muchas fases del trabajo pueden realizarse de forma remota sin afectar calidad.</p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white border-2 border-neutral-100 rounded-2xl overflow-hidden hover:border-brand-blue-200 transition-colors duration-300">
+                <button class="faq-btn w-full flex items-center justify-between gap-4 p-6 text-left" onclick="toggleFaq(this)">
+                    <span class="font-bold text-neutral-900 text-base font-display">¿Cuál es el tamaño mínimo de empresa que atienden?</span>
+                    <svg class="faq-icon w-5 h-5 text-brand-blue-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
+                    </svg>
+                </button>
+                <div class="faq-body px-6 pb-6">
+                    <p class="text-neutral-600 text-sm leading-relaxed font-body">Atendemos desde PYMEs con 5 empleados hasta medianas empresas con 200+. Nuestro enfoque es siempre personalizado — lo que importa es tu voluntad de mejorar, no el tamaño. Tenemos planes escalables para cada etapa.</p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white border-2 border-neutral-100 rounded-2xl overflow-hidden hover:border-brand-blue-200 transition-colors duration-300">
+                <button class="faq-btn w-full flex items-center justify-between gap-4 p-6 text-left" onclick="toggleFaq(this)">
+                    <span class="font-bold text-neutral-900 text-base font-display">¿Qué incluye el diagnóstico gratuito?</span>
+                    <svg class="faq-icon w-5 h-5 text-brand-blue-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
+                    </svg>
+                </button>
+                <div class="faq-body px-6 pb-6">
+                    <p class="text-neutral-600 text-sm leading-relaxed font-body">Una sesión de 60–90 minutos con nuestro equipo donde analizamos tus procesos actuales, identificamos las 3 áreas de mayor impacto y te entregamos un informe inicial sin costo ni compromiso. El objetivo es que salgas con claridad de dónde están los cuellos de botella.</p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white border-2 border-neutral-100 rounded-2xl overflow-hidden hover:border-brand-blue-200 transition-colors duration-300">
+                <button class="faq-btn w-full flex items-center justify-between gap-4 p-6 text-left" onclick="toggleFaq(this)">
+                    <span class="font-bold text-neutral-900 text-base font-display">¿Aceptan pagos en bolívares y dólares?</span>
+                    <svg class="faq-icon w-5 h-5 text-brand-blue-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
+                    </svg>
+                </button>
+                <div class="faq-body px-6 pb-6">
+                    <p class="text-neutral-600 text-sm leading-relaxed font-body">Sí, aceptamos ambas monedas y tenemos estructuras de pago flexibles adaptadas a la realidad venezolana, incluyendo pagos escalonados vinculados a resultados en ciertos proyectos.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
