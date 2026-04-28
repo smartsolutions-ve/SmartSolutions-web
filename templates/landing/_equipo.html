@@ -5,7 +5,7 @@
 
         <!-- Header -->
         <div class="text-center mb-20 reveal">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-brand-blue-500/25 mb-5">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-blue-500/10 border border-brand-blue-500/25 mb-5">
                 <svg class="w-3.5 h-3.5 text-brand-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                 </svg>
@@ -13,106 +13,76 @@
             </div>
             <h2 class="text-5xl lg:text-6xl font-black mb-6 font-display">
                 <span class="text-white">Las Personas</span><br>
-                <span class="text-transparent bg-gradient-to-r from-brand-blue-400 via-brand-green-400 to-brand-amber-400 bg-clip-text">Detrás del Resultado</span>
+                <span class="grad">Detrás del Resultado</span>
             </h2>
             <p class="text-xl text-slate-300 max-w-2xl mx-auto font-body">
                 Profesionales venezolanos con experiencia internacional y profundo conocimiento del entorno local.
             </p>
         </div>
 
-        <!-- Grid del Equipo -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Grid 4 columnas -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
-            <!-- Miembro 1 -->
-            <div class="reveal lift glass-card border border-white/10 rounded-3xl p-8 text-center hover:border-brand-blue-500/30 transition-all duration-300">
-                <div class="w-20 h-20 rounded-full mx-auto mb-5 flex items-center justify-center text-white text-2xl font-black font-display bg-gradient-to-br from-brand-blue-600 to-brand-green-600">
-                    JF
-                </div>
+            <div class="reveal lift" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:1.5rem;padding:2rem;text-align:center;transition:all .3s">
+                <div class="w-20 h-20 rounded-full mx-auto mb-5 flex items-center justify-center text-white text-2xl font-black font-display" style="background:linear-gradient(135deg,#0066FF,#10B981)">JF</div>
                 <h4 class="font-black text-white text-lg mb-1 font-display">Javier Figueroa</h4>
                 <p class="text-brand-blue-400 text-sm font-semibold mb-3 font-display">CEO & Estratega</p>
-                <p class="text-slate-400 text-xs leading-relaxed font-body">
-                    Asesor financiero. Especialista en Business Intelligence y análisis financiero con +17 años de experiencia.
-                </p>
+                <p class="text-slate-400 text-xs leading-relaxed font-body">Asesor financiero. Especialista en Business Intelligence y análisis financiero con +17 años de experiencia.</p>
                 <div class="flex justify-center gap-2 mt-4">
                     <span class="px-2 py-1 rounded-md bg-brand-blue-500/10 border border-brand-blue-500/20 text-[10px] font-bold text-brand-blue-300 font-display">Finanzas</span>
                     <span class="px-2 py-1 rounded-md bg-brand-green-500/10 border border-brand-green-500/20 text-[10px] font-bold text-brand-green-300 font-display">Estrategia</span>
                 </div>
             </div>
 
-            <!-- Miembro 2 -->
-            <div class="reveal lift glass-card border border-white/10 rounded-3xl p-8 text-center hover:border-brand-green-500/30 transition-all duration-300" style="transition-delay:.1s">
-                <div class="w-20 h-20 rounded-full mx-auto mb-5 flex items-center justify-center text-white text-2xl font-black font-display bg-gradient-to-br from-brand-green-600 to-brand-amber-500">
-                    EF
-                </div>
+            <div class="reveal lift" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:1.5rem;padding:2rem;text-align:center;transition:all .3s;transition-delay:.1s">
+                <div class="w-20 h-20 rounded-full mx-auto mb-5 flex items-center justify-center text-white text-2xl font-black font-display" style="background:linear-gradient(135deg,#10B981,#F59E0B)">EF</div>
                 <h4 class="font-black text-white text-lg mb-1 font-display">Eileen Figueroa</h4>
                 <p class="text-brand-green-400 text-sm font-semibold mb-3 font-display">Directora de Proyectos Creativos</p>
-                <p class="text-slate-400 text-xs leading-relaxed font-body">
-                    Líder estratégica que vincula el desarrollo de software con la esencia de marca.
-                </p>
+                <p class="text-slate-400 text-xs leading-relaxed font-body">Líder estratégica que vincula el desarrollo de software con la esencia de marca.</p>
                 <div class="flex justify-center gap-2 mt-4">
                     <span class="px-2 py-1 rounded-md bg-brand-blue-500/10 border border-brand-blue-500/20 text-[10px] font-bold text-brand-blue-300 font-display">Design</span>
                     <span class="px-2 py-1 rounded-md bg-brand-amber-500/10 border border-brand-amber-500/20 text-[10px] font-bold text-brand-amber-300 font-display">Analytics</span>
                 </div>
             </div>
 
-            <!-- Miembro 3 -->
-            <div class="reveal lift glass-card border border-white/10 rounded-3xl p-8 text-center hover:border-brand-amber-500/30 transition-all duration-300" style="transition-delay:.2s">
-                <div class="w-20 h-20 rounded-full mx-auto mb-5 flex items-center justify-center text-white text-2xl font-black font-display bg-gradient-to-br from-brand-amber-500 to-brand-blue-600">
-                    SB
-                </div>
+            <div class="reveal lift" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:1.5rem;padding:2rem;text-align:center;transition:all .3s;transition-delay:.2s">
+                <div class="w-20 h-20 rounded-full mx-auto mb-5 flex items-center justify-center text-white text-2xl font-black font-display" style="background:linear-gradient(135deg,#F59E0B,#0066FF)">SB</div>
                 <h4 class="font-black text-white text-lg mb-1 font-display">Simón Briceño</h4>
-                <p class="text-brand-amber-400 text-sm font-semibold mb-3 font-display">Director y Consultor de Tecnología</p>
-                <p class="text-slate-400 text-xs leading-relaxed font-body">
-                    Arquitecto de software, experto en digitalización y automatización de procesos empresariales.
-                </p>
+                <p class="text-brand-amber-400 text-sm font-semibold mb-3 font-display">Director y consultor de Tecnología</p>
+                <p class="text-slate-400 text-xs leading-relaxed font-body">Arquitecto de software, experto en digitalización y automatización de procesos empresariales.</p>
                 <div class="flex justify-center gap-2 mt-4">
                     <span class="px-2 py-1 rounded-md bg-brand-blue-500/10 border border-brand-blue-500/20 text-[10px] font-bold text-brand-blue-300 font-display">Software</span>
                     <span class="px-2 py-1 rounded-md bg-brand-green-500/10 border border-brand-green-500/20 text-[10px] font-bold text-brand-green-300 font-display">ERP</span>
                 </div>
             </div>
 
-            <!-- Miembro 4 -->
-            <div class="reveal lift glass-card border border-white/10 rounded-3xl p-8 text-center hover:border-brand-blue-500/30 transition-all duration-300" style="transition-delay:.1s">
-                <div class="w-20 h-20 rounded-full mx-auto mb-5 flex items-center justify-center text-white text-2xl font-black font-display bg-gradient-to-br from-brand-blue-500 to-brand-green-400">
-                    CA
-                </div>
+            <div class="reveal lift" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:1.5rem;padding:2rem;text-align:center;transition:all .3s;transition-delay:.3s">
+                <div class="w-20 h-20 rounded-full mx-auto mb-5 flex items-center justify-center text-white text-2xl font-black font-display" style="background:linear-gradient(135deg,#3385FF,#34D399)">CA</div>
                 <h4 class="font-black text-white text-lg mb-1 font-display">Carlos Anibal</h4>
                 <p class="text-brand-blue-300 text-sm font-semibold mb-3 font-display">Director de Programas de Diseño</p>
-                <p class="text-slate-400 text-xs leading-relaxed font-body">
-                    Estratega de procesos dedicado a optimizar los flujos de trabajo entre diseño y desarrollo.
-                </p>
+                <p class="text-slate-400 text-xs leading-relaxed font-body">Estratega de procesos dedicado a optimizar los flujos de trabajo entre diseño y desarrollo.</p>
                 <div class="flex justify-center gap-2 mt-4">
                     <span class="px-2 py-1 rounded-md bg-brand-blue-500/10 border border-brand-blue-500/20 text-[10px] font-bold text-brand-blue-300 font-display">PM</span>
                     <span class="px-2 py-1 rounded-md bg-brand-green-500/10 border border-brand-green-500/20 text-[10px] font-bold text-brand-green-300 font-display">Coaching</span>
                 </div>
             </div>
 
-            <!-- Miembro 5 -->
-            <div class="reveal lift glass-card border border-white/10 rounded-3xl p-8 text-center hover:border-brand-amber-500/30 transition-all duration-300" style="transition-delay:.2s">
-                <div class="w-20 h-20 rounded-full mx-auto mb-5 flex items-center justify-center text-white text-2xl font-black font-display bg-gradient-to-br from-brand-amber-500 to-brand-blue-600">
-                    IS
-                </div>
+            <div class="reveal lift" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:1.5rem;padding:2rem;text-align:center;transition:all .3s;transition-delay:.2s">
+                <div class="w-20 h-20 rounded-full mx-auto mb-5 flex items-center justify-center text-white text-2xl font-black font-display" style="background:linear-gradient(135deg,#F59E0B,#0066FF)">IS</div>
                 <h4 class="font-black text-white text-lg mb-1 font-display">Isaac Siso</h4>
                 <p class="text-brand-amber-400 text-sm font-semibold mb-3 font-display">Ingeniero en Procesos</p>
-                <p class="text-slate-400 text-xs leading-relaxed font-body">
-                    Experto dedicado a la optimización y estructuración formal de procesos operativos.
-                </p>
+                <p class="text-slate-400 text-xs leading-relaxed font-body">Experto dedicado a la optimización y estructuración formal de procesos operativos.</p>
                 <div class="flex justify-center gap-2 mt-4">
                     <span class="px-2 py-1 rounded-md bg-brand-blue-500/10 border border-brand-blue-500/20 text-[10px] font-bold text-brand-blue-300 font-display">Métricas</span>
                     <span class="px-2 py-1 rounded-md bg-brand-green-500/10 border border-brand-green-500/20 text-[10px] font-bold text-brand-green-300 font-display">Rendimiento</span>
                 </div>
             </div>
 
-            <!-- Miembro 6 -->
-            <div class="reveal lift glass-card border border-white/10 rounded-3xl p-8 text-center hover:border-brand-green-500/30 transition-all duration-300" style="transition-delay:.3s">
-                <div class="w-20 h-20 rounded-full mx-auto mb-5 flex items-center justify-center text-white text-2xl font-black font-display bg-gradient-to-br from-brand-amber-500 to-brand-blue-600">
-                    ES
-                </div>
+            <div class="reveal lift" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:1.5rem;padding:2rem;text-align:center;transition:all .3s;transition-delay:.2s">
+                <div class="w-20 h-20 rounded-full mx-auto mb-5 flex items-center justify-center text-white text-2xl font-black font-display" style="background:linear-gradient(135deg,#F59E0B,#0066FF)">ES</div>
                 <h4 class="font-black text-white text-lg mb-1 font-display">Eylin Sanchez</h4>
                 <p class="text-brand-amber-400 text-sm font-semibold mb-3 font-display">Diseñadora</p>
-                <p class="text-slate-400 text-xs leading-relaxed font-body">
-                    Profesional en diseño e identidad visual de marca.
-                </p>
+                <p class="text-slate-400 text-xs leading-relaxed font-body">Profesional en diseño e identidad visual de marca.</p>
                 <div class="flex justify-center gap-2 mt-4">
                     <span class="px-2 py-1 rounded-md bg-brand-blue-500/10 border border-brand-blue-500/20 text-[10px] font-bold text-brand-blue-300 font-display">Design</span>
                     <span class="px-2 py-1 rounded-md bg-brand-green-500/10 border border-brand-green-500/20 text-[10px] font-bold text-brand-green-300 font-display">Marketing</span>

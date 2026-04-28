@@ -80,6 +80,19 @@ document.querySelectorAll('.counter-item').forEach(el => {
     }
 });
 
+// Progress bars (hero card)
+const barIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.querySelectorAll('.progress-fill').forEach(f => {
+                setTimeout(() => { f.style.width = f.style.getPropertyValue('--w'); }, 300);
+            });
+            barIO.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.3 });
+document.querySelectorAll('.glass-premium').forEach(el => barIO.observe(el));
+
 // FAQ toggle
 function toggleFaq(btn) {
     const item = btn.closest('.faq-item');

@@ -533,6 +533,110 @@ p {
   transform: rotate(45deg);
 }
 
+/* ===== GLASS (design proposal aliases) ===== */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.glass-premium {
+  background: linear-gradient(135deg, rgba(0, 102, 255, 0.09), rgba(16, 185, 129, 0.09));
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ===== TEXT GRADIENT ALIASES ===== */
+.grad {
+  background: linear-gradient(135deg, #66A3FF, #6EE7B7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.grad-blue {
+  background: linear-gradient(135deg, #3385FF, #66A3FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.grad-amber {
+  background: linear-gradient(135deg, #F59E0B, #FBBF24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.grad-full {
+  background: linear-gradient(135deg, #66A3FF, #6EE7B7, #FBBF24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== BUTTONS ===== */
+.btn-p {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.875rem 1.875rem;
+  background: linear-gradient(135deg, #0066FF, #0052CC);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  border-radius: 0.875rem;
+  box-shadow: var(--shadow-primary);
+  transition: all 0.25s;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+.btn-p:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-primary-lg);
+}
+.btn-p svg { transition: transform 0.25s; }
+.btn-p:hover svg { transform: translateX(3px); }
+
+.btn-g {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.875rem 1.875rem;
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  border-radius: 0.875rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  transition: all 0.25s;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn-g:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.btn-g svg { transition: transform 0.25s; }
+.btn-g:hover svg { transform: translateX(3px); }
+
+/* ===== PRICING FEATURED ===== */
+.plan-featured {
+  background: linear-gradient(150deg, #0066FF 0%, #003380 100%);
+  color: #fff;
+  box-shadow: var(--shadow-primary-lg);
+}
+
+/* ===== FLOAT ANIMATION CLASS ===== */
+.float {
+  animation: float 3.5s ease-in-out infinite;
+}
+
+/* ===== GRID PATTERN (dark) ===== */
+.grid-pattern {
+  background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
 /* ===== EXTRA PATTERNS ===== */
 .dot-pattern {
   background-image: radial-gradient(circle at 2px 2px, rgba(0, 0, 0, 0.05) 1px, transparent 0);
