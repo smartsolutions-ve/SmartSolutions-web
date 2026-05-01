@@ -30,8 +30,9 @@ staticfiles/
 .DS_Store
 Thumbs.db
 
-# Docker
+# Docker (solo overrides y datos persistentes, NO los archivos de deploy)
 *.override.yml
+nginx/certbot/
 
 # Archivos sensibles (claves, conexiones, notas privadas)
 Docs/*clave*.txt
